@@ -17,10 +17,10 @@ services:
     networks:
       - proxynet
 
-  postgres:
+  postgres2:
     image: debezium/postgres:16
-    hostname: postgres
-    container_name: postgres
+    hostname: postgres2
+    container_name: postgres2
     ports:
       - "5432:5432"
     environment:
@@ -110,7 +110,7 @@ services:
       - kafka-1
       - kafka-2
       - schema-registry
-      - postgres
+      - postgres2
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka-0:9092
       CONNECT_REST_PORT: 8083
