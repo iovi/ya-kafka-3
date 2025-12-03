@@ -1,6 +1,6 @@
 version: "3.5"
 services:
-
+  # шаблонные настройки брокеров Kafka
   x-kafka-common:
     &kafka-common
     image: bitnamilegacy/kafka:3.7
@@ -17,6 +17,7 @@ services:
     networks:
       - proxynet
 
+  # настройки СУБД
   postgres2:
     image: debezium/postgres:16
     hostname: postgres2
@@ -33,6 +34,7 @@ services:
     networks:
       - proxynet
 
+  # 3 брокера Kafka
   kafka-0:
     <<: *kafka-common
     restart: always
@@ -72,6 +74,7 @@ services:
     volumes:
       - kafka_2_data:/bitnamilegacy/kafka
 
+  # схема для обработки и сериализации данных
   schema-registry:
     image: bitnamilegacy/schema-registry:7.6
     ports:
@@ -86,6 +89,7 @@ services:
     networks:
       - proxynet
 
+  # веб-интерфейс Kafka
   ui:
     image: provectuslabs/kafka-ui:v0.7.0
     restart: always
@@ -98,6 +102,7 @@ services:
     networks:
       - proxynet
 
+  # сервис взаимодействия между брокерами kafka и СУБД
   kafka-connect:
     build:
       context: ./kafka-connect
@@ -146,6 +151,7 @@ services:
     networks:
       - proxynet
 
+  # сервис ведения метрик
   prometheus:
     image: prom/prometheus:v2.30.3
     ports:
@@ -158,6 +164,7 @@ services:
     networks:
       - proxynet
 
+  # сервис отображения метрик
   grafana:
     build:
       context: ./grafana
