@@ -47,3 +47,5 @@ order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 - Запустить jar файл командой "java -jar out/artifacts/ya_kafka_3_jar/ya-kafka-3.jar"
 
 - Изменить данные в таблицах. Эти изменения приложение выведет в консоль
+
+- Можно зайти в интерфейс Grafana http://localhost:3000/ , импортировать dashboard из файла \grafana\dashboards\connect.json и насладиться графиками собираемых метрик
