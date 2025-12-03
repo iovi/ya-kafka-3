@@ -15,7 +15,7 @@ name VARCHAR(100),
 email VARCHAR(100),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE orders (
+>CREATE TABLE orders (
 id SERIAL PRIMARY KEY,
 user_id INT REFERENCES users(id),
 product_name VARCHAR(100),
@@ -24,7 +24,8 @@ order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 - сконфигурировать Debezeum, отправив PUT-запрос на адрес http://localhost:8083/connectors/pg-connector/config с указанным телом
-    {
+  ```
+  {
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector", //название коннектора
     "database.hostname": "postgres2", //имя хоста, задано в docker-compose.yaml
     "database.port": "5432", //порт для подключения, задано в docker-compose.yaml
@@ -42,6 +43,7 @@ order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     "topic.creation.default.partitions": "-1", // количество партиций, установленных в Kafka по умолчанию
     "skipped.operations": "none", //никакие операции с таблицами не пропускаются
     }
+  ```
 Комментарии из json необходимо удалить перед отправкой.
 
 - Запустить jar файл командой "java -jar out/artifacts/ya_kafka_3_jar/ya-kafka-3.jar"
