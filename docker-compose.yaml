@@ -25,8 +25,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres-user
-      POSTGRES_PASSWORD: postgres-pw
+      POSTGRES_USER: ${YA_KAFKA_3_DB_USER}
+      POSTGRES_PASSWORD: ${YA_KAFKA_3_DB_PASSWORD}
       POSTGRES_DB: customers
     volumes:
       - ./postgres/custom-config.conf:/etc/postgresql/postgresql.conf

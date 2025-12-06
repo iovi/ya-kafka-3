@@ -3,6 +3,7 @@
 Требуется установленный docker и java 17+
 
 Необходимо 
+- придумать имя пользователя и пароль для СУБД, записать их в системные переменные соответственно YA_KAFKA_3_DB_USER и YA_KAFKA_3_DB_PASSWORD 
 - запустить docker-compose.yml с помощью команды "docker-compose.yml up -d"
 - создать таблицы users и orders в развёрнутой БД.
   Для подключения выполнить
@@ -29,8 +30,8 @@ order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector", //название коннектора
     "database.hostname": "postgres2", //имя хоста, задано в docker-compose.yaml
     "database.port": "5432", //порт для подключения, задано в docker-compose.yaml
-    "database.user": "postgres-user", //пользователь БД
-    "database.password": "postgres-pw", //пароль пользователя БД
+    "database.user": "*", //имя пользователя в БД - подставить из первого пункта вместо *
+    "database.password": "*", //пароль пользователя в БД - подставить из первого пункта вместо *
     "database.dbname": "customers",  //название БД
     "database.server.name": "customers", //название сервера БД
     "table.include.list": "public.orders,public.users", //перечень таблиц, изменения в которых отслеживаются
